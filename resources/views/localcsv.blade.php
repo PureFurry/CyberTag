@@ -17,7 +17,7 @@
             <p class="mx-auto">Download a sample file with a data structure in Excel to your local disk.</p>
         </div>
         <div class="row mt-5">
-            <a href="#" class="btn btn-warning">Download File</a>
+            <a href="{{asset('example-csv.csv')}}" download="{{asset('example-csv.csv')}}" class="btn btn-warning">Download File</a>
         </div>
         <div class="row mt-5">
             <p class="mx-auto">Fill in the file with data, export it as a CSV file, and place it in the selected folder on your local disk.

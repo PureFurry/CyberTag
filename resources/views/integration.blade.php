@@ -16,43 +16,43 @@
             </div>
             <div class="col-6">
                 <div class="row">
-                    <button type="button" href="{{ route('localcsv') }}" class="btn btn-warning">Send CSV files from a local disk</button>
+                    <a type="button" href="{{ route('localcsv') }}" class="btn btn-warning">Send CSV files from a local disk</a>
                 </div>
                 <div class="row mt-3">
-                    <button type="button" class="btn btn-warning">Periodivally send CSV files to an FTP server</button>
+                    <a type="button" class="btn btn-warning">Periodivally send CSV files to an FTP server</a>
                 </div>
                 <div class="row mt-3">
-                    <button type="button" class="btn btn-warning">Call the Cybertag API from my system</button>
+                    <a type="button" class="btn btn-warning">Call the Cybertag API from my system</a>
                 </div>
             </div>
         </div>
         <hr>
         <div class="row mt-5">
             <div class="col-3">
-                <button type="button" class="btn btn-warning btn-lg btn-block">PC Market</button>
+                <a type="button" class="btn btn-warning btn-lg btn-block">PC Market</a>
             </div>
             <div class="col-3">
-                <button type="button" class="btn btn-warning btn-lg btn-block">Hipermarket</button>
+                <a type="button" class="btn btn-warning btn-lg btn-block">Hipermarket</a>
             </div>
             <div class="col-3">
-                <button type="button" class="btn btn-warning btn-lg btn-block">KC Firma</button>
+                <a type="button" class="btn btn-warning btn-lg btn-block">KC Firma</a>
             </div>
             <div class="col-3">
-                <button type="button" class="btn btn-warning btn-lg btn-block">Simple Business</button>
+                <a type="button" class="btn btn-warning btn-lg btn-block">Simple Business</a>
             </div>
         </div>
         <div class="row mt-5">
             <div class="col-3">
-                <button type="button" class="btn btn-warning btn-lg btn-block">Novicloud</button>
+                <a type="button" class="btn btn-warning btn-lg btn-block">Novicloud</a>
             </div>
             <div class="col-3">
-                <button type="button" class="btn btn-warning btn-lg btn-block">Novitus</button>
+                <button type="button" class="btn btn-warning btn-lg btn-block">Novitus</a>
             </div>
             <div class="col-3">
-                <button type="button" class="btn btn-warning btn-lg btn-block">Tema</button>
+                <a type="button" class="btn btn-warning btn-lg btn-block">Tema</a>
             </div>
             <div class="col-3">
-                <button type="button" class="btn btn-warning btn-lg btn-block">Enova</button>
+                <a type="button" class="btn btn-warning btn-lg btn-block">Enova</a>
             </div>
         </div>
     </div>

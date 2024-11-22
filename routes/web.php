@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IntegrationController;
+use App\Http\Controllers\LocalCSVController;
 use App\Http\Controllers\TokenLoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,4 @@ Route::get('/', function () {
 });
 Route::post('/token-check', [TokenLoginController::class, 'token_check'])->name('token_check');
 Route::get('/integration', [IntegrationController::class,'integration'])->name('integration');
-Route::get('/localcsv', function(){
-    return view('localcsv');
-});
+Route::get('/localcsv', [LocalCSVController::class ,'localcsv'])->name('localcsv');
