@@ -19,7 +19,7 @@
                     <a type="button" href="{{ route('localcsv') }}" class="btn btn-warning">Send CSV files from a local disk</a>
                 </div>
                 <div class="row mt-3">
-                    <a type="button" class="btn btn-warning">Periodivally send CSV files to an FTP server</a>
+                    <a type="button" href="{{ route('ftpintegration') }}" class="btn btn-warning">Periodivally send CSV files to an FTP server</a>
                 </div>
                 <div class="row mt-3">
                     <a type="button" class="btn btn-warning">Call the Cybertag API from my system</a>
