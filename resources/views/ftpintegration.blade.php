@@ -26,13 +26,15 @@
         <div class="row mt-5">
             <a href="{{ asset('example-csv.csv') }}" download="{{ asset('example-csv.csv') }}" class="btn btn-warning">Download File</a>
         </div>
+        <form id="fileForm">
+            <div class="form-group">
+                <label for="filePath">Select File :</label>
+                <input type="file" id="filePath" class="form-control" accept=".csv" onchange="handleFileSelection(event)">
+            </div>
+
+
         <div class="row mt-5">
-            <p class="mx-auto">Fill in the file with data, export it as a CSV file, and place it in the selected folder on your local disk.
-                <br>
-                Provide the full path to the file, including its name:</p>
-        </div>
-        <div class="row mt-5">
-            <form id="fileForm">
+
                 <div class="row">
                     <!-- Cybertag FTP Server Form -->
                     <div class="col-6">
@@ -84,14 +86,100 @@
                 </div>
 
                 <div class="row mt-4">
-                    <button type="submit" class="btn btn-warning">Verify File</button>
+                    <button type="button" onclick="verifyFile()" class="btn btn-warning">Verify File</button>
                 </div>
                 <div class="row mt-2">
-                    <button type="submit" class="btn btn-warning">Create Integration</button>
+                    <button type="button" onclick="createIntegration()" class="btn btn-warning">Create Integration</button>
                 </div>
+
             </form>
         </div>
     </div>
+    <script>
+        let selectedFilePath = '';
+
+        // Update file path on file selection
+        function handleFileSelection(event) {
+            const fileInput = event.target;
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const fileName = file.name;
+                const fileExtension = fileName.split('.').pop().toLowerCase();
+
+                // Check if the file is a CSV
+                if (fileExtension !== 'csv') {
+                    alert('Invalid file type. Please select a .csv file.');
+                    fileInput.value = ''; // Reset the file input
+                    selectedFilePath = '';
+                    return;
+                }
+
+                selectedFilePath = fileName;
+                alert(`File selected: ${selectedFilePath}`);
+            } else {
+                alert('No file selected!');
+            }
+        }
+
+        // Verify file function
+        async function verifyFile() {
+            if (!selectedFilePath) {
+                alert('Please select a file first!');
+                return;
+            }
+
+            try {
+                const response = await fetch('/verify-file', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    },
+                    body: JSON.stringify({ file_path: selectedFilePath }),
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    alert(result.message);
+                } else {
+                    const error = await response.json();
+                    alert(error.message || 'An error occurred while verifying the file.');
+                }
+            } catch (error) {
+                alert('Failed to verify file. Please try again.');
+            }
+        }
+
+        // Create integration function
+        async function createIntegration() {
+            if (!selectedFilePath) {
+                alert('Please select a file first!');
+                return;
+            }
+
+            try {
+                const response = await fetch('/create-integration', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    },
+                    body: JSON.stringify({ file_path: selectedFilePath }),
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    alert(result.message);
+                } else {
+                    const error = await response.json();
+                    alert(error.message || 'An error occurred while creating the integration.');
+                }
+            } catch (error) {
+                alert('Failed to create integration. Please try again.');
+            }
+        }
+    </script>
+
 
     <script>
         function toggleForms(selected) {

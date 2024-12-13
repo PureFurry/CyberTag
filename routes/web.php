@@ -20,9 +20,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('token');
 });
-Route::post('/token-check', [TokenLoginController::class, 'token_check'])->name('token_check');
-Route::get('/integration', [IntegrationController::class,'integration'])->name('integration');
-Route::get('/localcsv', [LocalCSVController::class ,'localcsv'])->name('localcsv');
+
+Route::post('/token-check', [TokenLoginController::class, 'authenticate'])->name('token.authenticate');
+
+Route::get('/integration', [IntegrationController::class, 'integration'])->name('integration');
+Route::get('/localcsv', [LocalCSVController::class, 'localcsv'])->name('localcsv');
 Route::post('/verify-file', [LocalCSVController::class, 'verifyFile'])->name('verify.file');
 Route::post('/create-integration', [LocalCSVController::class, 'createIntegration'])->name('create.integration');
-Route::get('/ftp-integration', [FTPIntegrationController::class,'ftpintegration'])->name('ftpintegration');
+Route::get('/ftp-integration', [FTPIntegrationController::class, 'ftpintegration'])->name('ftpintegration');
+Route::post('/verify-file', [FTPIntegrationController::class, 'verifyFile']);
+Route::post('/create-integration', [FTPIntegrationController::class, 'createIntegration']);
+
+Route::middleware(['checkToken'])->group(function () {
+    // Add other protected routes here if needed
+});
